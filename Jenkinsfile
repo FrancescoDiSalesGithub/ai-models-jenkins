@@ -12,7 +12,7 @@ pipeline {
             steps {
                 // Get some code from a GitHub repository
                 git branch: 'main', url: 'https://github.com/FrancescoDiSalesGithub/ai-models'
-                  dir('${param.MODELNAME}') {
+                  dir("${param.MODELNAME}") {
 
                     sh "ls -l"
                   }
