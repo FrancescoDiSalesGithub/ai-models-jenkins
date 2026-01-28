@@ -1,10 +1,10 @@
 pipeline {
-    agent any
+    agent none
 
     parameters {
 
         string(name:'MODELNAME',defaultValue:'silly')
-        choices(name:'SERVER',choices:["192.168.56.20"])
+        choice(name:'SERVER',choices:["192.168.56.20"])
     }
 
 
@@ -23,7 +23,7 @@ pipeline {
 
         }
 
-        stage('uploading to server'){
+        stage(name: 'uploading to server'){
             steps{
                 echo "uploading to server ${params.SERVER}"
             }
