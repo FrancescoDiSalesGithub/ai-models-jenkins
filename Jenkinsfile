@@ -12,10 +12,17 @@ pipeline {
             steps {
                 // Get some code from a GitHub repository
                 git branch: 'main', url: 'https://github.com/FrancescoDiSalesGithub/ai-models'
-                  dir("${params.MODELNAME}") {
+
+                try {
+                    dir("${params.MODELNAME}") {
 
                     sh "ls -l"
                   }
+                }
+                catch(Exception e){
+                    echo "${e.getMessage()}"
+                }
+
 
               
             }
