@@ -13,19 +13,14 @@ pipeline {
                 // Get some code from a GitHub repository
                 git branch: 'main', url: 'https://github.com/FrancescoDiSalesGithub/ai-models'
 
-                script {
-
-                      try {
+                       catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+            sh 'exit 1'
+            }
                     dir("${params.MODELNAME}") {
 
                     sh "ls -l"
                   }
-                }
-                catch(Exception e){
-                    echo "${e.getMessage()}"
-                }
-                    
-                }
+                
               
 
 
