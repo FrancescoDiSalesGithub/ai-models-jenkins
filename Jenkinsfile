@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
 
-        string(name:'MODELNAME')
+        string(name:'MODELNAME',defaultValue:'silly')
     }
 
 
