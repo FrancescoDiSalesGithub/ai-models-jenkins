@@ -23,7 +23,7 @@ pipeline {
 
         }
 
-        stage(name: 'uploading to server'){
+        stage('uploading to server'){
             steps{
                 echo "uploading to server ${params.SERVER}"
             }
