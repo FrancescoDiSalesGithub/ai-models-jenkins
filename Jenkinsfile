@@ -11,9 +11,11 @@ pipeline {
     stages {
         stage('Getting models') {
             steps {
-                // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/FrancescoDiSalesGithub/ai-models'
 
+                node('second'){
+                // Get some code from a GitHub repository
+                    git branch: 'main', url: 'https://github.com/FrancescoDiSalesGithub/ai-models'
+                }
 
               
             }
@@ -23,11 +25,15 @@ pipeline {
         stage('uploading to server'){
             steps{
 
-                dir("${params.MODELNAME}"){
+                
                         node('second') {
+
+                        dir("${params.MODELNAME}"){
+                            
                         sh "ollama create ${params.MODELNAME} -f Modelfile"
+                        }
                    }
-                }
+                
 
             }
         }
