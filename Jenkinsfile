@@ -9,20 +9,16 @@ pipeline {
 
 
     stages {
-        stage('Getting models') {
-            steps {
-                // Get some code from a GitHub repository
-                git branch: 'main', url: 'https://github.com/FrancescoDiSalesGithub/ai-models'
+        
 
-
-              
-            }
-
-        }
-
-        stage('uploading to server'){
+        stage('build ai'){
             steps{
-                echo "uploading to server ${params.SERVER}"
+                dockerNode('ollama/ollama') {
+                         git branch: 'main', url: 'https://github.com/FrancescoDiSalesGithub/ai-models'
+                         dir("${params.MODELNAME}"){
+                          sh "ollama create ${params.MODELNAME} -f Modelfile"
+                         }
+                    }
             }
         }
     }
