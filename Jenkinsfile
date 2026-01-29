@@ -22,7 +22,13 @@ pipeline {
 
         stage('uploading to server'){
             steps{
-                echo "uploading to server ${params.SERVER}"
+
+                dir("${params.MODELNAME}"){
+                        node('second') {
+                        sh "ollama create ${params.MODELNAME} -f Modelfile"
+                   }
+                }
+
             }
         }
     }
