@@ -4,7 +4,6 @@ pipeline {
     parameters {
 
         string(name:'MODELNAME',defaultValue:'silly')
-        choice(name:'SERVER',choices:["192.168.56.20"])
     }
 
 
